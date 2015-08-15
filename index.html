@@ -1,0 +1,122 @@
+<link href='http://fonts.googleapis.com/css?family=Josefin+Slab:700' rel='stylesheet' type='text/css'>
+<style>
+.slideshow-image-wrapper{
+	position: absolute;
+	top:0; bottom:0; left:0; right:0;
+	overflow: hidden;
+	z-index: -1000;
+}
+.slideshow-image{
+	position: absolute;
+	top:0; bottom:0; left:0; right:0;
+	transition: opacity 0.5s, left 0.5s, right 0.5s;
+	opacity:0;
+	/*http://stackoverflow.com/a/9265035/1181387*/
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+.slideshow-text-wrapper{
+	position: relative;
+	overflow: hidden;
+}
+.slideshow-text{
+	position: absolute;
+	top:0; bottom:0; left:0; right:0;
+	transition: opacity 0.5s, left 0.5s, right 0.5s;
+	opacity:0;
+}
+.header-wrapper{
+	margin-top:3em;
+	font-family:"Josefin Slab", Arial, sans-serif;
+	font-weight:700;
+	text-align: center;
+	background-color: rgba(240,240,240,0.9);
+	margin-left: auto;
+	margin-right: auto;
+	font-size: 2em;
+	width: 15em;
+	padding: 1.5em 0;
+	overflow:hidden;
+}
+h1{
+	margin:0;
+	
+	color: black;
+	
+	font-weight: bold;
+	font-size:3em;
+	letter-spacing:-0.05em;
+}
+.slideshow-text.prev,.slideshow-image.prev{opacity:0;top:0;left:-30px;right:30px;bottom:0;}
+.slideshow-text.curr,.slideshow-image.curr{opacity:1;top:0;left:0;right:0;bottom:0;}
+.slideshow-text.next,.slideshow-image.next{opacity:0;top:0;left:30px;right:-30px;bottom:0;}
+</style>
+<div class="slideshow-image-wrapper">
+	<div class="slideshow-image curr" style=""></div>
+	<div class="slideshow-image next" style=""></div>
+</div>
+<div class="header-wrapper">
+	<h1>Make</h1>
+	<div class="slideshow-text-wrapper">
+		<h1>&nbsp;</h1>
+		<h1 class="slideshow-text curr"></h1>
+		<h1 class="slideshow-text next"></h1>
+	</div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>
+$(function(){
+	var previ = 0, nowi = 0, nexti = 0;
+	
+	window.imgdata = [
+		{text:"Robots",			imgurl:"IMG_0034.JPG"},
+		{text:"Circuits",		imgurl:"IMG_1021.JPG"},
+		//{text:"Websites",		imgurl:""},
+		{text:"Models",			imgurl:"FTC_4029_2BitsandaByte.jpg"},
+		{text:"Opportunities",	imgurl:"11000626694_87bb05e4fd_b.jpg"},
+		{text:"Engineers",		imgurl:"11473328784_dcddd3cfd7_b.jpg"},
+		{text:"Technology",		imgurl:"7412073260_b895c7e2e5_b.jpg"},
+		{text:"Innovation",		imgurl:"IMG_3796.JPG"},
+		{text:"Teams",			imgurl:"IMG_8743.JPG"},
+		{text:"Competition",	imgurl:"IMG_8644.JPG"},
+	];
+	setTimeout(function(){for(var i in imgdata){//Preload
+		imgdata[i].img = new Image();
+		imgdata[i].img.src = imgdata[i].imgurl;
+	}},100);
+	function nextSlide(){
+		previ = nowi;
+		nowi = nexti;
+		while(nexti == nowi || nexti == previ)nexti = Math.floor(Math.random() * window.imgdata.length);
+		
+		$(".slideshow-text.prev").remove();
+		$(".slideshow-text.curr").removeClass("curr").addClass("prev");
+		$(".slideshow-text.next").removeClass("next").addClass("curr");
+		var el = document.createElement("h1");
+		$(el).addClass("slideshow-text next").text(window.imgdata[nexti].text);
+		$(".slideshow-text-wrapper").append(el);
+		/*http://stackoverflow.com/a/13933418/1181387*/
+		/*$("h1").css({
+			"background":				"url('"+window.imgdata[nexti].imgurl+"') repeat",
+			"-webkit-text-fill-color":	"transparent",
+			"-webkit-background-clip":	"text"
+		});*/
+		
+		$(".slideshow-image.prev").remove();
+		$(".slideshow-image.curr").removeClass("curr").addClass("prev");
+		$(".slideshow-image.next").removeClass("next").addClass("curr");
+		var el = document.createElement("div");
+		$(el).addClass("slideshow-image next").css("background-image","url('"+window.imgdata[nexti].imgurl+"')");
+		$(".slideshow-image-wrapper").append(el);
+	}
+	
+	function nextSlideChained(){ //Because setInterval sometimes hangs and then speeds up to catch up.
+		nextSlide();
+		window.slideTimeout = setTimeout(nextSlideChained,4000);
+	}
+	$(window).focus(nextSlideChained).blur(function(){clearTimeout(window.slideTimeout);});
+	nextSlide();
+	nextSlideChained();
+});
+</script>
