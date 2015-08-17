@@ -1,133 +1,205 @@
-<link href='https://fonts.googleapis.com/css?family=Josefin+Slab:700' rel='stylesheet' type='text/css'>
-<style>
-.slideshow-image-wrapper{
-	position: absolute;
-	top:0; bottom:0; left:0; right:0;
-	overflow: hidden;
-	z-index: -1000;
-}
-.slideshow-image{
-	position: absolute;
-	top:0; bottom:0; left:0; right:0;
-	transition: opacity 0.5s, left 0.5s, right 0.5s;
-	opacity:0;
-	/*http://stackoverflow.com/a/9265035/1181387*/
-	background-size: cover;
-	background-position: center center;
-	background-repeat: no-repeat;
-}
-.slideshow-text-wrapper{
-	position: relative;
-	overflow: hidden;
-}
-.slideshow-text{
-	position: absolute;
-	top:0; bottom:0; left:0; right:0;
-	transition: opacity 0.5s, left 0.5s, right 0.5s;
-	opacity:0;
-}
-.header-wrapper{
-	margin-top:3em;
-	font-family:"Josefin Slab", Arial, sans-serif;
-	font-weight:700;
-	text-align: center;
-	background-color: rgba(240,240,240,0.85);
-	margin-left: auto;
-	margin-right: auto;
-	font-size: 2em;
-	width: 16em;
-	padding: 1.5em 0;
-	overflow:hidden;
-}
-h1{
-	margin:0;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset='utf-8'>
+	<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+	<meta name='viewport' content='width=device-width, initial-scale=1'>
+	<meta name='description' content='LHS MakerLab is an open workspace at Lexington High School, MA for high school engineers to learn new technologies, use professional tools, and pursue their own projects'>
+	<meta name='author' content='Clive Chan (http://clive.io)'>
+	<title>LHS MakerLab</title>
+	<!--link rel='icon' type='image/ico' href='favicon.ico'-->
+	<style>
+	.slideshow-image-wrapper{
+		position: absolute;
+		top:0; bottom:0; left:0; right:0;
+		overflow: hidden;
+		z-index: -1000;
+	}
+	.slideshow-text, .slideshow-image{
+		position: absolute;
+		top:0; bottom:0; left:0; right:0;
+		transition: opacity 0.5s, left 0.5s, right 0.5s;
+		opacity:0;
+	}
+	.slideshow-image{
+		/*http://stackoverflow.com/a/9265035/1181387*/
+		background-size: cover;
+		background-position: center center;
+		background-repeat: no-repeat;
+	}
+	.slideshow-text-wrapper{
+		position: relative;
+		overflow: hidden;
+	}
+	.header-wrapper{
+		margin-top: 2em;
+		font-family: Arial, sans-serif;
+		font-weight: 700;
+		text-align: center;
+		background-color: rgba(240,240,240,0.85);
+		margin-left: auto;
+		margin-right: auto;
+		font-size: 1.8em;
+		width: 22em;
+		padding: 1em 0;
+		overflow:hidden;
+	}
+	h1{
+		margin:0;
+		
+		font-weight: bold;
+		font-size:3em;
+		letter-spacing:-0.03em; /*what is up with the width of the r!?*/
+	}
+	h1 a{
+		color: black;
+		text-decoration:none;
+	}
+	.slideshow-text{
+		color: rgba(0,0,0,0.6);
+		font-size: 2.5em;
+	}
+	.slideshow-image{background-color:white;}
+	.slideshow-text.prev,.slideshow-image.prev{opacity:0;top:0;left:-50px;right:0px;bottom:0;}
+	.slideshow-text.curr,.slideshow-image.curr{opacity:1;top:0;left:-25px;right:-25px;bottom:0;}
+	.slideshow-text.next,.slideshow-image.next{opacity:0;top:0;left:0px;right:-50px;bottom:0;}
+
+	.slidehide{
+		transition: width 0.5s;
+		display: inline-block;
+		overflow: hidden;
+		vertical-align: bottom;
+		text-align: right;
+	}
+
+	aside{
+		margin-top: 0.5em;
+		font-size: 0.5em;
+	}
+	aside img{
+		max-height:1.5em;
+		vertical-align:bottom;
+	}
 	
-	color: black;
-	
-	font-weight: bold;
-	font-size:3em;
-	letter-spacing:-0.05em;
-}
-.slideshow-text.prev,.slideshow-image.prev{opacity:0;top:0;left:-30px;right:0px;bottom:0;}
-.slideshow-text.curr,.slideshow-image.curr{opacity:1;top:0;left:-15px;right:-15px;bottom:0;}
-.slideshow-text.next,.slideshow-image.next{opacity:0;top:0;left:0px;right:-30px;bottom:0;}
-</style>
+	.slideshow-text-filler{transition:height 0.5s;height:0;}
+	</style>
+</head>
+<body>
 <div class="slideshow-image-wrapper">
-	<div class="slideshow-image curr" style=""></div>
-	<div class="slideshow-image next" style=""></div>
+	<div class="slideshow-image curr"></div>
+	<div class="slideshow-image next"></div>
 </div>
 <div class="header-wrapper">
-	<h1 class="make">Make</h1><!--Start: MakerSpace - slide into Make with space below; c-->
+	<h1 class="make"><a href="#"><span class="slidehide">LHS&nbsp;</span>Make<span class="slidehide" style="direction:rtl">rLab</span></a></h1><!--LHS MakerLab? MakeLHS?-->
 	<div class="slideshow-text-wrapper">
-		<h1>&nbsp;</h1>
+		<h1 class="slideshow-text-filler">&nbsp;</h1>
 		<h1 class="slideshow-text curr"></h1>
 		<h1 class="slideshow-text next"></h1>
 	</div>
+	<aside>By <a href="http://lexrobotics.com/"><img src="cropped-Lexrobotics_Logo.png" alt="LexRobotics"></a> in partnership with <a href="http://www.lexedfoundation.org/"><img src="lef-logoORGONASL.png" alt="Lexington Education Foundation"></a></aside>
 </div>
+
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="jquery-1.11.1.min.js"><\/script>')</script>
 <script>
-$(function(){
-	function shuffle(arr){
-		for(var i = 0; i < arr.length; i++){
-			other = i + Math.floor((arr.length-i) * Math.random());
-			tmp = arr[i];
-			arr[i] = arr[other];
-			arr[other] = tmp;
-		}
+function shuffle(arr){
+	for(var i = 0; i < arr.length; i++){
+		other = i + Math.floor((arr.length-i) * Math.random());
+		tmp = arr[i];
+		arr[i] = arr[other];
+		arr[other] = tmp;
 	}
+}
+
+var previ = 0, nowi = 0, nexti = 0;
+function nextSlide(){
+	previ = nowi;
+	nowi = nexti;
+	nexti = (nexti + 1) % window.imgdata.length;
 	
-	var previ = 0, nowi = 0, nexti = 0;
-	function nextSlide(){
-		previ = nowi;
-		nowi = nexti;
-		nexti = (nexti + 1) % window.imgdata.length;
-		
-		$(".slideshow-text.prev").remove();
-		$(".slideshow-text.curr").removeClass("curr").addClass("prev");
-		$(".slideshow-text.next").removeClass("next").addClass("curr");
-		var el = document.createElement("h1");
-		$(el).addClass("slideshow-text next").text(window.imgdata[nexti].text);
-		$(".slideshow-text-wrapper").append(el);
-		/*http://stackoverflow.com/a/13933418/1181387*/
-		/*$("h1").css({
-			"background":				"url('"+window.imgdata[nexti].imgurl+"') repeat",
-			"-webkit-text-fill-color":	"transparent",
-			"-webkit-background-clip":	"text"
-		});*/
-		
-		$(".slideshow-image.prev").remove();
-		$(".slideshow-image.curr").removeClass("curr").addClass("prev");
-		$(".slideshow-image.next").removeClass("next").addClass("curr");
-		var el = document.createElement("div");
-		$(el).addClass("slideshow-image next").css("background-image","url('"+window.imgdata[nexti].imgurl+"')");
-		$(".slideshow-image-wrapper").append(el);
+	$(".slideshow-text.prev").remove();
+	$(".slideshow-text.curr").removeClass("curr").addClass("prev");
+	$(".slideshow-text.next").removeClass("next").addClass("curr");
+	var el = document.createElement("h1");
+	$(el).addClass("slideshow-text next").text(window.imgdata[nexti].text);
+	$(".slideshow-text-wrapper").append(el);
+	/*http://stackoverflow.com/a/13933418/1181387*/
+	/*$("h1").css({
+		"background":				"url('"+window.imgdata[nexti].imgurl+"') repeat",
+		"-webkit-text-fill-color":	"transparent",
+		"-webkit-background-clip":	"text"
+	});*/
+	
+	$(".slideshow-image.prev").remove();
+	$(".slideshow-image.curr").removeClass("curr").addClass("prev");
+	$(".slideshow-image.next").removeClass("next").addClass("curr");
+	var el = document.createElement("div");
+	$(el).addClass("slideshow-image next").css("background-image","url('"+window.imgdata[nexti].imgurl+"')");
+	$(".slideshow-image-wrapper").append(el);
+}
+
+var slideNum = 0;
+function nextSlideChained(){ //Because setInterval sometimes hangs and then speeds up to catch up.
+	slideNum++;
+	if((slideNum % 5) == 0){
+		showTitle();
+		$(".slideshow-text-filler").height(0);
+		$(".slideshow-text.curr").css({left:-50,right:0,opacity:0});
+		window.slideTimeout = setTimeout(nextSlideChained,5000);
 	}
-	
-	function nextSlideChained(){ //Because setInterval sometimes hangs and then speeds up to catch up.
+	else{
+		$(".slideshow-text-filler").height("1em");
+		hideTitle();
 		nextSlide();
-		window.slideTimeout = setTimeout(nextSlideChained,4000);
+		window.slideTimeout = setTimeout(nextSlideChained,3000);
 	}
+}
+
+function hideTitle(){
+	$(".make .slidehide").each(function(){
+		this.origWidth = $(this).width() || this.origWidth; //if it's zero, ignore
+		$(this).width(this.origWidth).width(0);
+	});
+}
+function showTitle(){
+	$(".make .slidehide").each(function(){
+		$(this).width(0).width(this.origWidth);
+	});
+}
+
+window.imgdata = [
+	{text:"Robots",			imgurl:"IMG_0034.JPG"},
+	{text:"Circuits",		imgurl:"IMG_1021.JPG"},
+	//{text:"Websites",		imgurl:""},
+	{text:"Models",			imgurl:"FTC_4029_2BitsandaByte.jpg"},
+	{text:"Opportunity",	imgurl:"11000626694_87bb05e4fd_b.jpg"},
+	{text:"Engineers",		imgurl:"11473328784_dcddd3cfd7_b.jpg"},
+	{text:"Technology",		imgurl:"7412073260_b895c7e2e5_b.jpg"},
+	{text:"Innovation",		imgurl:"IMG_3796.JPG"},
+	{text:"Teams",			imgurl:"IMG_8743.JPG"},
+	//{text:"Teams",			imgurl:"IMG_8614.JPG"},
+	{text:"Competition",	imgurl:"IMG_8644.JPG"},
+	//{text:"Competition",	imgurl:"IMG_8728.JPG"},
+];
+shuffle(window.imgdata);
+
+$(function(){
+	nextSlide();
+	$(".slideshow-image.curr").css("background","transparent");
+	$(".slideshow-image.next").css({left:-25,right:-25,opacity:1});
+	//Hax to make it look like it doesn't move on the first slide
 	
-	window.imgdata = [
-		{text:"Robots",			imgurl:"IMG_0034.JPG"},
-		{text:"Circuits",		imgurl:"IMG_1021.JPG"},
-		//{text:"Websites",		imgurl:""},
-		{text:"Models",			imgurl:"FTC_4029_2BitsandaByte.jpg"},
-		{text:"Opportunity",	imgurl:"11000626694_87bb05e4fd_b.jpg"},
-		{text:"Engineers",		imgurl:"11473328784_dcddd3cfd7_b.jpg"},
-		{text:"Technology",		imgurl:"7412073260_b895c7e2e5_b.jpg"},
-		{text:"Innovation",		imgurl:"IMG_3796.JPG"},
-		{text:"Teams",			imgurl:"IMG_8743.JPG"},
-		{text:"Competition",	imgurl:"IMG_8644.JPG"},
-	];
-	shuffle(window.imgdata);
-	setTimeout(function(){for(var i in imgdata){//Preload
+	for(var i in imgdata){//Preload
 		imgdata[i].img = new Image();
 		imgdata[i].img.src = imgdata[i].imgurl;
-	}},100);
-	
-	$(window).focus(nextSlideChained).blur(function(){clearTimeout(window.slideTimeout);});
-	nextSlide();
-	nextSlideChained();
+	}
+	setTimeout(function(){
+		hideTitle();
+		//$(window).focus(nextSlideChained).blur(function(){clearTimeout(window.slideTimeout);});
+		nextSlideChained();
+	},3000);
 });
 </script>
+</body>
+</html>
