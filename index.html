@@ -88,6 +88,7 @@
 	</style>
 </head>
 <body>
+<noscript><font color="red">Unfortunately, this website requires JavaScript. Please turn it on.</font></noscript>
 <div class="slideshow-image-wrapper">
 	<div class="slideshow-image curr"></div>
 	<div class="slideshow-image next"></div>
@@ -108,8 +109,8 @@
 <script>
 function shuffle(arr){
 	for(var i = 0; i < arr.length; i++){
-		other = i + Math.floor((arr.length-i) * Math.random());
-		tmp = arr[i];
+		var other = i + Math.floor((arr.length-i) * Math.random());
+		var tmp = arr[i];
 		arr[i] = arr[other];
 		arr[other] = tmp;
 	}
@@ -137,7 +138,7 @@ function nextSlide(){
 	$(".slideshow-image.prev").remove();
 	$(".slideshow-image.curr").removeClass("curr").addClass("prev");
 	$(".slideshow-image.next").removeClass("next").addClass("curr");
-	var el = document.createElement("div");
+	el = document.createElement("div");
 	$(el).addClass("slideshow-image next").css("background-image","url('"+window.imgdata[nexti].imgurl+"')");
 	$(".slideshow-image-wrapper").append(el);
 }
@@ -145,7 +146,7 @@ function nextSlide(){
 var slideNum = 0;
 function nextSlideChained(){ //Because setInterval sometimes hangs and then speeds up to catch up.
 	slideNum++;
-	if((slideNum % 5) == 0){
+	if((slideNum % 5) === 0){
 		showTitle();
 		$(".byline").height("1.5em");
 		$(".slideshow-text-filler").css({height:0});
@@ -195,9 +196,9 @@ $(function(){
 	$(".slideshow-image.next").css({left:-25,right:-25,opacity:1});
 	//Hax to make it look like it doesn't move on the first slide
 	
-	for(var i in imgdata){//Preload
-		imgdata[i].img = new Image();
-		imgdata[i].img.src = imgdata[i].imgurl;
+	for(var i = 0; i < window.imgdata.length; i++){//Preload
+		window.imgdata[i].img = new Image();
+		window.imgdata[i].img.src = window.imgdata[i].imgurl;
 	}
 	setTimeout(function(){
 		hideTitle();
