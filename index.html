@@ -201,7 +201,7 @@ $(function(){
 	}
 	setTimeout(function(){
 		hideTitle();
-		//$(window).focus(nextSlideChained).blur(function(){clearTimeout(window.slideTimeout);});
+		$(window).focus(nextSlideChained).blur(function(){clearTimeout(window.slideTimeout);});
 		nextSlideChained();
 	},3000);
 });
