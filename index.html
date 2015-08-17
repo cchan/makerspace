@@ -72,16 +72,20 @@
 		text-align: right;
 	}
 
-	aside{
+	.byline{
 		margin-top: 0.5em;
 		font-size: 0.5em;
+		transition:height 0.5s;
+		height:1.5em;
+		display:block;
+		overflow:hidden;
 	}
-	aside img{
+	.byline img{
 		max-height:1.5em;
 		vertical-align:bottom;
 	}
 	
-	.slideshow-text-filler{transition:height 0.5s;height:0;}
+	.slideshow-text-filler{transition:height 0.5s;height:0;overflow:hidden;}
 	</style>
 </head>
 <body>
@@ -96,7 +100,7 @@
 		<h1 class="slideshow-text curr"></h1>
 		<h1 class="slideshow-text next"></h1>
 	</div>
-	<aside>By <a href="http://lexrobotics.com/"><img src="cropped-Lexrobotics_Logo.png" alt="LexRobotics"></a> in partnership with <a href="http://www.lexedfoundation.org/"><img src="lef-logoORGONASL.png" alt="Lexington Education Foundation"></a></aside>
+	<aside class="byline">By <a href="http://lexrobotics.com/"><img src="cropped-Lexrobotics_Logo.png" alt="LexRobotics"></a> in partnership with <a href="http://www.lexedfoundation.org/"><img src="lef-logoORGONASL.png" alt="Lexington Education Foundation"></a></aside>
 </div>
 
 
@@ -144,11 +148,13 @@ function nextSlideChained(){ //Because setInterval sometimes hangs and then spee
 	slideNum++;
 	if((slideNum % 5) == 0){
 		showTitle();
+		$(".byline").height("1.5em");
 		$(".slideshow-text-filler").height(0);
 		$(".slideshow-text.curr").css({left:-50,right:0,opacity:0});
 		window.slideTimeout = setTimeout(nextSlideChained,5000);
 	}
 	else{
+		$(".byline").height(0);
 		$(".slideshow-text-filler").height("1em");
 		hideTitle();
 		nextSlide();
