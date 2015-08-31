@@ -63,6 +63,7 @@
 	.slideshow-text.prev,.slideshow-image.prev{left:-50px;}
 	.slideshow-text.curr,.slideshow-image.curr{opacity:1;left:-25px;right:-25px;z-index:0;}
 	.slideshow-text.next,.slideshow-image.next{right:-50px;}
+	.slideshow-image.curr{background-image:url('IMG_0034.JPG');} /*default if no js*/
 
 	.slidehide{
 		transition: width 0.5s;
@@ -89,21 +90,21 @@
 	</style>
 </head>
 <body>
-<noscript><font color="red">Unfortunately, this website requires JavaScript. Please turn it on.</font></noscript>
-<div class="slideshow-image-wrapper">
-	<div class="slideshow-image curr"></div>
-	<div class="slideshow-image next"></div>
-</div>
-<div class="header-wrapper">
-	<h1 class="make"><a href="#"><span class="slidehide">LHS&nbsp;</span>Make<span class="slidehide" style="direction:rtl">rLab</span></a></h1><!--LHS MakerLab? MakeLHS (would work well with current format)?-->
-	<div class="slideshow-text-wrapper">
-		<h1 class="slideshow-text-filler">&nbsp;</h1>
-		<h1 class="slideshow-text curr"></h1>
-		<h1 class="slideshow-text next"></h1>
+<section>
+	<div class="slideshow-image-wrapper">
+		<div class="slideshow-image curr"></div>
+		<div class="slideshow-image next"></div>
 	</div>
-	<aside class="byline">by <a href="http://lexrobotics.com/"><img src="cropped-Lexrobotics_Logo.png" alt="LexRobotics"></a> in partnership with <a href="http://www.lexedfoundation.org/"><img src="lef-logoORGONASL.png" alt="Lexington Education Foundation"></a></aside>
-</div>
-
+	<div class="header-wrapper">
+		<h1 class="make"><a href="#"><span class="slidehide">LHS&nbsp;</span>Make<span class="slidehide" style="direction:rtl">rLab</span></a></h1><!--LHS MakerLab? MakeLHS (would work well with current format)?-->
+		<div class="slideshow-text-wrapper">
+			<h1 class="slideshow-text-filler">&nbsp;</h1>
+			<h1 class="slideshow-text curr"></h1>
+			<h1 class="slideshow-text next"></h1>
+		</div>
+		<aside class="byline">by <a href="http://lexrobotics.com/"><img src="cropped-Lexrobotics_Logo.png" alt="LexRobotics"></a> in partnership with <a href="http://www.lexedfoundation.org/"><img src="lef-logoORGONASL.png" alt="Lexington Education Foundation"></a></aside>
+	</div>
+</section>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="jquery-1.11.1.min.js"><\/script>')</script>
