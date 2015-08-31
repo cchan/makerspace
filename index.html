@@ -10,15 +10,28 @@
 	<!--link rel='icon' type='image/ico' href='favicon.ico'-->
 	<link href='http://fonts.googleapis.com/css?family=Raleway:100,400,700,900' rel='stylesheet' type='text/css'>
 	<style>
+	body{
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		right: 0px;
+		bottom: 0px;
+		background-color: white;
+		padding: 0;
+		margin: 0;
+	}
+	#splash{
+		font-size: 3vmax;
+		padding-top: 2em;
+		height: 100%;
+	}
 	.header-wrapper{
-		margin-top: 2em;
 		font-family: Raleway, Arial, sans-serif;
 		font-weight: 700;
 		text-align: center;
 		background-color: rgba(240,240,240,0.85);
 		margin-left: auto;
 		margin-right: auto;
-		font-size: 3vmax;
 		width: 22em;
 		padding: 1em 0 1.2em 0;
 		overflow:hidden;
@@ -87,10 +100,40 @@
 	}
 	
 	.slideshow-text-filler{transition:height 0.5s;height:0;overflow:hidden;}
+	
+	.downarrow{
+		position:absolute;
+		bottom: 1em;
+		width: 1.5em;
+		height: 1.5em;
+		margin-left: -1em;
+		left: 50%;
+		line-height: 1.5em;
+		text-align:center;
+		color:white;
+		border:solid 0.1em #fff;
+		border-radius: 50%;
+	}
+	@media(min-aspect-ratio:5/2){
+		.downarrow{
+			display:none;
+		}
+	}
+	.downarrow .char{
+		transition: top 0.5s, opacity 0.5s;
+		position: relative;
+		vertical-align: baseline;
+		top: 0;
+		opacity: 1;
+	}
+	.downarrow:hover .char{
+		top: 3em;
+		opacity: 0;
+	}
 	</style>
 </head>
 <body>
-<section>
+<section id="splash">
 	<div class="slideshow-image-wrapper">
 		<div class="slideshow-image curr"></div>
 		<div class="slideshow-image next"></div>
@@ -104,6 +147,18 @@
 		</div>
 		<aside class="byline">by <a href="http://lexrobotics.com/"><img src="cropped-Lexrobotics_Logo.png" alt="LexRobotics"></a> in partnership with <a href="http://www.lexedfoundation.org/"><img src="lef-logoORGONASL.png" alt="Lexington Education Foundation"></a></aside>
 	</div>
+	<div class="downarrow">
+		<span style="position:absolute;">&#8681;</span>
+		<span class="char">&#8681;</span>
+	</div>
+</section>
+<section id="statsbar">
+	<ul>
+		<li>hai</li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
 </section>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -164,7 +219,7 @@ function nextSlideChained(){ //Because setInterval sometimes hangs and then spee
 	}
 }
 
-function hideTitle(){
+function hideTitle(){/*ISSUE: origWidth changes on zoom. So instead of this hack, use a nested div and expand the outer div to fit the inner div.*/
 	$(".make .slidehide").each(function(){
 		this.origWidth = $(this).width() || this.origWidth; //if it's zero, ignore
 		$(this).width(this.origWidth).width(0);
